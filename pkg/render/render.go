@@ -78,7 +78,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 	//get all of the files page.gohtml
 
-	pages, err := filepath.Glob("./templates/*.page.gohtml")
+	pages, err := filepath.Glob("./templates/*.page.go.html")
 	custerror.FatalErr(err)
 
 	for _, page := range pages {
@@ -90,10 +90,10 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 		//	Next, the template set needs to know of any layouts we are using so it can parse correctly
 
-		matches, err := filepath.Glob("./templates/*.layout.gohtml")
+		matches, err := filepath.Glob("./templates/*.layout.go.html")
 		custerror.FatalErr(err)
 		if len(matches) > 0 {
-			ts, err = ts.ParseGlob("./templates/*.layout.gohtml")
+			ts, err = ts.ParseGlob("./templates/*.layout.go.html")
 			custerror.FatalErr(err)
 		}
 

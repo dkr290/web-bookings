@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/config"
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/models"
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/render"
+	"github.com/dkr290/web-bookings/pkg/config"
+	"github.com/dkr290/web-bookings/pkg/models"
+	"github.com/dkr290/web-bookings/pkg/render"
 )
 
 // Repo the repository used by handlers

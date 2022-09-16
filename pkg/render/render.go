@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/config"
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/custerror"
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/models"
+	"github.com/dkr290/web-bookings/pkg/config"
+	"github.com/dkr290/web-bookings/pkg/custerror"
+	"github.com/dkr290/web-bookings/pkg/models"
 )
 
 var app *config.AppConfig

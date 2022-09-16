@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/config"
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/custerror"
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/handlers"
-	"github.com/dkr290/go-web/01-02-http-templates/pkg/render"
+	"github.com/dkr290/web-bookings/pkg/config"
+	"github.com/dkr290/web-bookings/pkg/custerror"
+	"github.com/dkr290/web-bookings/pkg/handlers"
+	"github.com/dkr290/web-bookings/pkg/render"
 )
 
 const hostPort = "127.0.0.1:8080"

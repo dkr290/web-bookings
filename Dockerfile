@@ -19,8 +19,8 @@ WORKDIR /app
 
 # Copy only the executable binary from previous build
 COPY --from=builder /build/main .
-COPY --from=builder /build/templates .
-COPY --from=builder /build/static .
+COPY --from=builder /build/templates templates
+COPY --from=builder /build/static static
 
 
 # Expose port 8080 to the outside world

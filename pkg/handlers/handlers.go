@@ -51,5 +51,5 @@ func (r *Repository) Home(w http.ResponseWriter, req *http.Request) {
 
 	remoteIP := req.RemoteAddr
 	r.App.Session.Put(req.Context(), "remote_ip", remoteIP)
-	render.RenderTemplate(w, "home.page.go.html", &models.TemplateData{})
+	render.RenderTemplate(w, "index.page.go.html", &models.TemplateData{})
 }

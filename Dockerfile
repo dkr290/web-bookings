@@ -1,5 +1,5 @@
 #This is multistage Docker build 
-FROM 1.19.1-alpine3.15 as builder
+FROM golang:1.19.1-alpine3.15 as builder
 WORKDIR /build
 COPY go.mod go.sum ./
 # Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
@@ -9,7 +9,7 @@ RUN go build -o main cmd/web/*
  
 
 
-from 1.19.1-alpine3.15 
+from golang:1.19.1-alpine3.15 
 # Add Maintainer Info
 LABEL maintainer="Danail Surudzhiyski"
 

@@ -12,7 +12,7 @@ import (
 	"github.com/dkr290/web-bookings/pkg/render"
 )
 
-const hostPort = "0.0.0.0:8080"
+const hostPort = "127.0.0.1:8080"
 
 var app config.AppConfig
 

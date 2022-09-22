@@ -7,6 +7,7 @@
     <title>The index page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker-bs5.min.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
     <style>
       .my-footer {
         height: 5em;
@@ -19,9 +20,11 @@
       .room-image{
         max-width: 50%;
       }
-      .red-text{
-        color: red;
-      }
+
+    .notie-container {
+      box-shadow: none;
+    }
+  </style>
     </style>
 </head>
 <body>
@@ -72,27 +75,22 @@
         <form action="reservation.go.html" method="get" novalidate class="needs-validation">
 
       
-           <div class="form-row">
+           <div class="row">
             <div class="col">
 
-              <div class="form-row" id="reservation-dates">
-               
-               
-                <input required class="form-control" type="text" name="start" placeholder="Arrival">
-               
-                
-                
+              <div class="row" id="reservation-dates">
+                <div class="col">             
+                <input required class="form-control" type="text" name="start" placeholder="Arrival">             
+                </div>
+                <div class="col">
                 <input required class="form-control" type="text" name="end" placeholder="Departure">  
-               
+               </div>
               </div>
             </div>
            </div>
-       
-          
-       
-       
-      
-    
+
+               
+          </br>
 
                    
           <button type="submit" class="btn btn-primary">Search availability</button>
@@ -132,8 +130,22 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
+<script src="https://unpkg.com/notie"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   
+
+
+let attention = Prompt();
+
+document.getElementById("colorButton").addEventListener("click",function() {
+
+//notifyModal("title","Hello World","success","My text for the button")
+attention.sucess();
+
+})
+
+
   (() => {
   'use strict'
 
@@ -157,6 +169,41 @@ const elem = document.getElementById('reservation-dates');
 const rangepicker = new DateRangePicker(elem, {
   format: 'dd-mm-yyyy'
 }); 
+
+function notify(msg,msgType) {
+  notie.alert({
+  type: msgType, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+  text: msg,
+ 
+})
+  
+}
+
+function notifyModal(title,text,icon,conformationButton) {
+  Swal.fire({
+  title: title,
+  text: text,
+  icon: icon,
+  confirmButtonText: conformationButton
+})
+  
+}
+
+
+function Prompt() {
+  let toast = function(){
+    console.log("Click button and got toast")
+  }
+  let sucess = function(){
+    console.log("Click button and got sucess")
+  }
+  
+  return{
+    toast:toast,
+    sucess:sucess,
+  }
+}
+
 
 </script>
 

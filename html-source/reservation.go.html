@@ -24,6 +24,12 @@
     .notie-container {
       box-shadow: none;
     }
+
+    .datepicker {
+
+      z-index: 10000;
+
+    }
   </style>
     </style>
 </head>
@@ -141,7 +147,24 @@ let attention = Prompt();
 document.getElementById("colorButton").addEventListener("click",function() {
 
 //notifyModal("title","Hello World","success","My text for the button")
-attention.error({msg: "Ops error"});
+let html = `
+  <form id="check-availability-form "action="" method="post" novalidate class="needs-validation">
+    <div class="row">
+      <div class="col">
+        <div class="row" id="reservation-dates-modal">
+          <div class="col">  
+            <input disabled required class="form-control" type="text" name="start" id="start" placeholder="Arrival">             
+              </div>
+          <div class="col">
+            <input disabled required class="form-control" type="text" name="end" id="end" placeholder="Departure">   
+          </div>
+              </div>
+            </div>
+           </div>
+
+    </form>
+`
+attention.custom({msg: html,title: 'choose your dates'});
 
 })
 
@@ -251,11 +274,50 @@ footer: footer
 })
 
 }
+
+async function custom(c) {
+
+  const {
+    msg = "",
+    title = ""
+
+  } = c
+  
+  const { value: formValues } = await Swal.fire({
+  title: title,
+  html: msg,
+  backdrop: false,
+  focusConfirm: false,
+  showCancelButton: true,
+  willOpen: () => {
+       const elem = document.getElementById('reservation-dates-modal');
+       const rp = new DateRangePicker(elem, {
+          format: 'dd-mm-yyyy',
+          showOnFocus: true,
+       })
+  },
+  preConfirm: () => {
+    return [
+      document.getElementById('start').value,
+      document.getElementById('end').value
+    ]
+  },
+  didOpen: () => {
+   document.getElementById('start').removeAttribute('disabled')
+   document.getElementById('end').removeAttribute('disabled')
+  }
+})
+
+if (formValues) {
+  Swal.fire(JSON.stringify(formValues))
+}
+}
   
   return{
     toast:toast,
     sucess:sucess,
     error: error,
+    custom: custom,
   }
 }
 

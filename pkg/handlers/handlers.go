@@ -53,3 +53,17 @@ func (r *Repository) Home(w http.ResponseWriter, req *http.Request) {
 	r.App.Session.Put(req.Context(), "remote_ip", remoteIP)
 	render.RenderTemplate(w, "index.page.go.html", &models.TemplateData{})
 }
+
+func (r *Repository) Generals(w http.ResponseWriter, req *http.Request) {
+
+	remoteIP := req.RemoteAddr
+	r.App.Session.Put(req.Context(), "remote_ip", remoteIP)
+	render.RenderTemplate(w, "generals.go.html", &models.TemplateData{})
+}
+
+func (r *Repository) Majors(w http.ResponseWriter, req *http.Request) {
+
+	remoteIP := req.RemoteAddr
+	r.App.Session.Put(req.Context(), "remote_ip", remoteIP)
+	render.RenderTemplate(w, "majors.page.go.html", &models.TemplateData{})
+}

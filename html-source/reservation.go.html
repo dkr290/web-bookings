@@ -8,30 +8,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker-bs5.min.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
-    <style>
-      .my-footer {
-        height: 5em;
-        background-color: rgba(0, 0, 0, 0.781);
-        margin-top: 1.5em;
-        padding: 1em;
-        color: white;
-        font-size: 80%;
+    <link rel="stylesheet"  type="text/css" href="static/css/styles.css">
+
+     <style>
+      .btn-outline-secondary{
+        border-color: blue;
+        color: blue;
       }
-      .room-image{
-        max-width: 50%;
+      .paraClass {
+        font-size: xx-large;
+        color: brown;
+      }
+      .secondClass {
+        color: blueviolet;
       }
 
-    .notie-container {
-      box-shadow: none;
-    }
-
-    .datepicker {
-
-      z-index: 10000;
-
-    }
-  </style>
-    </style>
+      #lastPara{
+        text-decoration: underline;
+      }
+     </style>
+    
 </head>
 <body>
 
@@ -105,14 +101,7 @@
        </div>
     </div>
    
-        <div class="row">
-         <div class="col">
-          <p id="paragr">This is some text</p>
-            <p>
-              <button id="colorButton" class="btn btn-outline-secondary">Click Me</button>
-            </p>
-    </div>
-    </div>
+    
     <div class="row">
         
     </div>
@@ -289,11 +278,13 @@ async function custom(c) {
   backdrop: false,
   focusConfirm: false,
   showCancelButton: true,
+
   willOpen: () => {
        const elem = document.getElementById('reservation-dates-modal');
        const rp = new DateRangePicker(elem, {
           format: 'dd-mm-yyyy',
           showOnFocus: true,
+          orientation: "top",
        })
   },
   preConfirm: () => {

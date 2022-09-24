@@ -10,6 +10,7 @@ import (
 	"github.com/dkr290/web-bookings/pkg/config"
 	"github.com/dkr290/web-bookings/pkg/custerror"
 	"github.com/dkr290/web-bookings/pkg/models"
+	"github.com/justinas/nosurf"
 )
 
 var app *config.AppConfig
@@ -21,11 +22,12 @@ func Newtemplates(a *config.AppConfig) {
 
 }
 
-func AddDEfaultData(td *models.TemplateData) *models.TemplateData {
+func AddDEfaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.CSRFToken = nosurf.Token(r)
 	return td
 }
 
-func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData, r *http.Request) {
 
 	//get the template cache from app config
 	var tc map[string]*template.Template
@@ -58,7 +60,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 
 	buf := new(bytes.Buffer)
 
-	td = AddDEfaultData(td)
+	td = AddDEfaultData(td, r)
 	err = t.Execute(buf, td)
 	if err != nil {
 		log.Fatal(err)

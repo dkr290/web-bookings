@@ -1,7 +1,9 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/dkr290/web-bookings/pkg/config"
@@ -85,6 +87,29 @@ func (r *Repository) PostAvailability(w http.ResponseWriter, req *http.Request) 
 	end := req.Form.Get("end")
 
 	w.Write([]byte(fmt.Sprintf("Start date is %s and end date is %s", start, end)))
+}
+
+type jsonResponse struct {
+	OK      bool   `json:"ok"`
+	Message string `json:"message"`
+}
+
+// AvailabilityJSON Handles request for availability and sends JSOBN response
+func (r *Repository) AvailabilityJSON(w http.ResponseWriter, req *http.Request) {
+	resp := jsonResponse{
+		OK:      true,
+		Message: "Available",
+	}
+
+	out, err := json.MarshalIndent(resp, "", "     ")
+	if err != nil {
+		log.Println(err)
+	}
+
+	log.Println(string(out))
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(out)
+
 }
 func (r *Repository) Reservation(w http.ResponseWriter, req *http.Request) {
 

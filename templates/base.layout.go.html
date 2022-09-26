@@ -96,21 +96,21 @@ const forms = document.querySelectorAll('.needs-validation')
 Array.from(forms).forEach(form => {
 form.addEventListener('submit', event => {
   if (!form.checkValidity()) {
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   form.classList.add('was-validated')
-}, false)
+}, false);
 })
-})()
+})();
 
 
 
 function notify(msg,msgType) {
-notie.alert({
-type: msgType, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
-text: msg,
+    notie.alert({
+    type: msgType, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+    text: msg,
 
 })
 
@@ -195,9 +195,9 @@ const {
 msg = "",
 title = ""
 
-} = c
+} = c;
 
-const { value: formValues } = await Swal.fire({
+const { value: result} = await Swal.fire({
 title: title,
 html: msg,
 backdrop: false,
@@ -205,40 +205,40 @@ focusConfirm: false,
 showCancelButton: true,
 
 willOpen: () => {
-   const elem = document.getElementById('reservation-dates-modal');
-   const rp = new DateRangePicker(elem, {
-      format: 'dd-mm-yyyy',
-      showOnFocus: true,
-      orientation: "top",
-   })
+  if (c.willOpen !== undefined) {
+                            c.willOpen();
+                        }
+},
+
+didOpen: () => {
+  if (c.didOpen !== undefined){
+                            c.didOpen();
+                        }
 },
 preConfirm: () => {
 return [
   document.getElementById('start').value,
   document.getElementById('end').value
-]
-},
-didOpen: () => {
-document.getElementById('start').removeAttribute('disabled')
-document.getElementById('end').removeAttribute('disabled')
+  ]
 }
+
 })
 
 
- if(result) {
-  if(result.dismiss !== Swal.DismissReason.cancel){
-  
-     if(result.value !== ""){
-        if (c.callback !== undefined) {
-          c.callback(result);
-        } else {
-          c.callback(false);
-        }
-     }
-    } else {
-      c.callback(false);
-    }
-}
+if (result) {
+                    if (result.dismiss !== Swal.DismissReason.cancel) {
+                        if (result.value !== "") {
+                            if (c.callback !== undefined) {
+                                c.callback(result);
+                            }
+                        } else {
+                            c.callback(false);
+                        }
+                    } else {
+                        c.callback(false);
+                    }
+                }
+            }
 
 return{
 toast:toast,

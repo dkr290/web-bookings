@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/dkr290/web-bookings/pkg/config"
-	"github.com/dkr290/web-bookings/pkg/handlers"
+	"github.com/dkr290/web-bookings/internal/config"
+	"github.com/dkr290/web-bookings/internal/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )

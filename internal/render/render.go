@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/dkr290/web-bookings/pkg/config"
-	"github.com/dkr290/web-bookings/pkg/custerror"
-	"github.com/dkr290/web-bookings/pkg/models"
+	"github.com/dkr290/web-bookings/internal/config"
+	"github.com/dkr290/web-bookings/internal/custerror"
+	"github.com/dkr290/web-bookings/internal/models"
 	"github.com/justinas/nosurf"
 )
 

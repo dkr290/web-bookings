@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/dkr290/web-bookings/pkg/config"
-	"github.com/dkr290/web-bookings/pkg/models"
-	"github.com/dkr290/web-bookings/pkg/render"
+	"github.com/dkr290/web-bookings/internal/config"
+	"github.com/dkr290/web-bookings/internal/models"
+	"github.com/dkr290/web-bookings/internal/render"
 )
 
 // Repo the repository used by handlers

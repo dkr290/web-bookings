@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/dkr290/web-bookings/internal/config"
+	"github.com/dkr290/web-bookings/internal/forms"
 	"github.com/dkr290/web-bookings/internal/models"
 	"github.com/dkr290/web-bookings/internal/render"
 )
@@ -113,7 +114,14 @@ func (r *Repository) AvailabilityJSON(w http.ResponseWriter, req *http.Request) 
 }
 func (r *Repository) Reservation(w http.ResponseWriter, req *http.Request) {
 
-	remoteIP := req.RemoteAddr
-	r.App.Session.Put(req.Context(), "remote_ip", remoteIP)
-	render.RenderTemplate(w, "make-reservation.page.go.html", &models.TemplateData{}, req)
+	render.RenderTemplate(w, "make-reservation.page.go.html", &models.TemplateData{
+
+		Form: forms.New(nil),
+	}, req)
+
+}
+
+// PostReservation handles the posting of reservation form
+func (r *Repository) PostReservation(w http.ResponseWriter, req *http.Request) {
+
 }
